@@ -94,7 +94,7 @@ function mostrarCarrito() {
   contenidoCarrito += "Cookies: " + carritoCantidadCookies + "\r";
   contenidoCarrito += "Croissants: " + carritoCantidadCroissants + "\r";
   
-  alert(contenidoCarrito);
+  console.log(contenidoCarrito);
 }
 
 
