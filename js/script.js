@@ -1,147 +1,391 @@
-let carritoCantidadPorcionesTorta = 0; // Cantidad de porciones de torta en el carrito
-let carritoCantidadAlfajores = 0; // Cantidad de alfajores en el carrito
-let carritoCantidadMacarrons=0; // Cantidad de macarrons en el carrito 
-let carritoCantidadCookies=0; // Cantidad de cookies en el carrito 
-let carritoCantidadCroissants=0; // Cantidad de croassants en el carrito 
-
-const precioPorcionT = 1500; // Precio de cada porcion de torta
-const precioAlfajores = 550; // Precio de cada alfajor
-const precioMacarrons = 600; // Precio de cada macarrons
-const precioCookies = 450; // Precio de cada cookie
-const precioCroissant= 850; // Precio de cada croissant
-
-
-// Función para agregar una porcion de torta al carrito
-function agregarPorcionTortaAlCarrito() {
-  let cantidad = parseInt(prompt("Ingresa la cantidad de porciones de torta que deseas agregar:"));
-
-  // Validar que la cantidad ingresada sea un número válido
-  if (isNaN(cantidad)) {
-    alert("Por favor, ingresa un número válido.");
-    return;
+class Producto{
+  constructor(name, id, type , price, stock, description){
+      this.name = name;
+      this.id = id;
+      this.price = price;
+      this.stock = stock;
+      this.description = description;
+      this.type = type;
   }
+}
+const productosBase = [
+  {
+      name:"Porción de torta Matilda", 
+      id:"001",
+      type:"Pasteleria", 
+      price:1200, 
+      stock:25, 
+      description:"Bizcochuelo húmedo de cacao amargo, relleno y cubierto de ganache de chocolate"
+  },
+  {
+    name:"Porción de cheesecake", 
+    id:"002",
+    type:"Pasteleria", 
+    price:1000, 
+    stock:20, 
+    description:"Base de galletitas de vainilla, relleno cremoso y arriba un mix de frutos rojos"
+},
+{
+  name:"Macarons", 
+  id:"003",
+  type:"Pasteleria", 
+  price:700, 
+  stock:50, 
+  description:"Macarons rellenos de ganache de chocolate"
+},
+{
+  name:"Cookies", 
+  id:"004",
+  type:"Pasteleria", 
+  price:1200, 
+  stock:25, 
+  description:"Cookies de vainilla con chips de chocolate"
+},
+{
+  name:"Croissants", 
+  id:"005",
+  type:"Pasteleria", 
+  price:1200, 
+  stock:35, 
+  description:"Masa esponjosa rellena con crema de avellanas"
+},
+{
+  name:"Cupacake Ferrero", 
+  id:"006",
+  type:"Pasteleria", 
+  price:700, 
+  stock:60, 
+  description:"Masa de chocolate esponjosa cubierto por una ganache de cholote y ferrero rocher"
+},
+{
+  name:"Café Americano", 
+  id:"007",
+  type:"Bebidas", 
+  price:400, 
+  stock:100, 
+  description:"Café que consiste en partes exactamente iguales de espresso y agua"
+},
+{
+  name:"Capuchino", 
+  id:"008",
+  type:"Bebidas", 
+  price:400, 
+  stock:100, 
+  description:"Bebida que combina café expreso, leche espumada y cacao amargo"
+},
+{
+  name:"Latte de Vainilla", 
+  id:"009",
+  type:"Bebidas", 
+  price:450, 
+  stock:100, 
+  description:"Café con leche a un nuevo nivel de delicia con un toque de vainilla."
+},
+{
+  name:"Latte Macchiato", 
+  id:"010",
+  type:"Bebidas", 
+  price:470, 
+  stock:100, 
+  description:"Consiste en mucha leche al vapor, un tiro de espresso y leche espumosa encima"
+},
+{
+  name:"Té en Hebras", 
+  id:"011",
+  type:"Bebidas", 
+  price:420, 
+  stock:100, 
+  description:"Infusión de las hojas y brotes de la planta del té"
+},
+{
+  name:"Gaseosa", 
+  id:"012",
+  type:"Bebidas", 
+  price:350, 
+  stock:100, 
+  description:"Linea Coca Cola"
+},
+{
+  name:"Agua sin gas", 
+  id:"013",
+  type:"Bebidas", 
+  price:300, 
+  stock:100, 
+  description:"Linea kin -Coca Cola-"
+},
+{
+  name:"Agua con gas", 
+  id:"014",
+  type:"Bebidas", 
+  price:300, 
+  stock:100, 
+  description:"Linea kin -Coca Cola-"
+},
+{
+  name:"Light", 
+  id:"015",
+  type:"Desayunos y Meriendas", 
+  price:1200, 
+  stock:100, 
+  description:"Infusión + tostadas de pan integral con queso y mermelada + jugo de naranja "
+},
+{
+  name:"De Campo", 
+  id:"016",
+  type:"Desayunos y Meriendas", 
+  price:1450, 
+  stock:100, 
+  description:"Infusión + tostadas de pan de campo con manteca y DDL + jugo de naranja "
+},
+{
+  name:"Avocado", 
+  id:"017",
+  type:"Desayunos y Meriendas", 
+  price:1900, 
+  stock:100, 
+  description:"Infusión + tostadas de campo con huevos revueltos,queso finlandia y palta + jugo de naranja + yogurt con granola "
+},
+{
+  name:"Fit", 
+  id:"018",
+  type:"Desayunos y Meriendas", 
+  price:1750, 
+  stock:100, 
+  description:"Infusión + pancakes de avena y coco con frutas de estación y miel + jugo de naranja + yogurt con granola "
+},
+]
+// OR lógico para cargar local storage
+const productos = JSON.parse(localStorage.getItem("productos")) || [] 
+let carrito = JSON.parse(localStorage.getItem("carrito")) || []
+const pedidos = JSON.parse(localStorage.getItem("pedidos")) || []
 
-  carritoCantidadPorcionesTorta += cantidad;
-
-  alert("Las porciones de torta han sido agregadas al carrito.");
+const agregarProducto = ({name, id, type, price, stock, description})=>{
+    //Destuctura un objeto para recibir los datos
+    if(productos.some((prod)=>prod.id===id)){
+    } else {
+        const productoNuevo = new Producto(name, id, type, price, stock, description)
+        productos.push(productoNuevo)
+        //guarda el nuevo array de productos
+        localStorage.setItem("productos", JSON.stringify(productos))
+    }
 }
 
-// Función para agregar un alfajor al carrito
-function agregarAlfajorAlCarrito() {
-  let cantidad = parseInt(prompt("Ingresa la cantidad de alfajores que deseas agregar:"));
-
-  // Validar que la cantidad ingresada sea un número válido
-  if (isNaN(cantidad)) {
-    alert("Por favor, ingresa un número válido.");
-    return;
-  }
-
-  carritoCantidadAlfajores += cantidad;
-
-  alert("Los alfajores han sido agregadas al carrito.");
+const productosPreexistentes = ()=>{
+    // Si el array de productos esta vacio, utiliza el array de productos pre-existente
+    if (productos.length===0){
+        productosBase.forEach(prod=>{
+            let dato = JSON.parse(JSON.stringify(prod))
+            agregarProducto(dato)}
+            )
+    }
+}
+const totalCarrito = ()=>{
+    let total = carrito.reduce((acumulador, {price, quantity})=>{
+        return acumulador + (price*quantity)
+    }, 0)
+    return total
+}
+const totalCarritoRender = ()=>{
+    // se encarga de calcular el total del carrito
+    const carritoTotal = document.getElementById("carritoTotal")
+    carritoTotal.innerHTML=`Precio total: $ ${totalCarrito()}`
 }
 
-// Función para agregar un macarrons al carrito
-function agregarMacarronsAlCarrito() {
-    let cantidad = parseInt(prompt("Ingresa la cantidad de macarrons que deseas agregar:"));
+const agregarCarrito = (objetoCarrito)=>{
+    carrito.push(objetoCarrito)
+    totalCarritoRender()
+}
+const renderizarCarrito = ()=>{
+  const listaCarrito = document.getElementById("listaCarrito")
   
-    // Validar que la cantidad ingresada sea un número válido
-    if (isNaN(cantidad)) {
-      alert("Por favor, ingresa un número válido.");
-      return;
-    }
-  
-    carritoCantidadMacarrons += cantidad;
-  
-    alert("Los macarrons han sido agregadas al carrito.");
-  }
+  listaCarrito.innerHTML=""
+  carrito.forEach(({name, price,id, quantity}) =>{
+      let elementoLista = document.createElement("li")
+      elementoLista.innerHTML=`Producto:${name} -- P/u: ${price} -- Cant.:${quantity} <button id="eliminarCarrito${id}">X</button>`
+      listaCarrito.appendChild(elementoLista);
+      const botonBorrar = document.getElementById(`eliminarCarrito${id}`)
+      botonBorrar.addEventListener("click",()=>{
+          // creo un array sin el elemento a borrar y lo igualo a carrito
+          carrito = carrito.filter((elemento)=>{
+              if(elemento.id !== id){
+                  return elemento
+              }
+          })
+          let carritoString = JSON.stringify(carrito)
+          localStorage.setItem("carrito", carritoString)
+          renderizarCarrito()
+      })
+      let carritoString = JSON.stringify(carrito)
+      localStorage.setItem("carrito", carritoString)
+  })
+}
 
-  // Función para agregar un cookies al carrito
-function agregarCookiesAlCarrito() {
-    let cantidad = parseInt(prompt("Ingresa la cantidad de cookies que deseas agregar:"));
-  
-    // Validar que la cantidad ingresada sea un número válido
-    if (isNaN(cantidad)) {
-      alert("Por favor, ingresa un número válido.");
-      return;
-    }
-  
-    carritoCantidadCookies += cantidad;
-  
-    alert("Las cookies han sido agregadas al carrito.");
-  }
+const borrarCarrito = ()=>{
+  carrito.length = 0  //es una manera de borrar el contenido de un array constante
+  let carritoString = JSON.stringify(carrito)
+  localStorage.setItem("carrito", carritoString)
+  renderizarCarrito()
+}
 
-  // Función para agregar un croissant al carrito
-function agregarCroissantsAlCarrito() {
-    let cantidad = parseInt(prompt("Ingresa la cantidad de croissants que deseas agregar:"));
+const renderizarProductos = (arrayUtilizado)=>{
+  // renderiza productos en el DOM
+  const contenedorProductos = document.getElementById("contenedorProductos")
+  // borramos para no duplicar
+  contenedorProductos.innerHTML = ""
   
-    // Validar que la cantidad ingresada sea un número válido
-    if (isNaN(cantidad)) {
-      alert("Por favor, ingresa un número válido.");
-      return;
-    }
-  
-    carritoCantidadCroissants += cantidad;
-  
-    alert("Los croissants han sido agregados al carrito.");
+  arrayUtilizado.forEach(({name, id, type, price, stock, description})=>{
+      const prodCard = document.createElement("div")
+      prodCard.classList.add("col")
+      prodCard.classList.add("card")
+      prodCard.style = "width: 270px;height: 550px; margin:3px"
+      prodCard.id = id
+      prodCard.innerHTML = `
+              <img src="./assets/${name+id}.png" class="card-img-top" alt="${name}">
+              <div class="card-body">
+                  <h5 class="card-title">${name}</h5>
+                  <h6>${type}</h6>
+                  <p class="card-text">${description}</p>
+                  <span>Stock: ${stock}</span>
+                  <span>$ ${price}</span>
+                  <form id="form${id}">
+                      <label for="contador${id}">Cantidad</label>
+                      <input type="number" placeholder="0" id="contador${id}">
+                      <button class="btn btn-primary" id="botonProd${id}">Agregar</button>
+                  </form>
+              </div>`
+      contenedorProductos.appendChild(prodCard)
+      const btn = document.getElementById(`botonProd${id}`)
+      // Funcionalidad al boton de agregar para agregar prods al carrito
+      btn.addEventListener("click",(evento)=>{
+          evento.preventDefault()
+          const contadorQuantity = Number(document.getElementById(`contador${id}`).value)
+          if(contadorQuantity>0){
+              agregarCarrito({name, id, type, price, stock, description, quantity:contadorQuantity})
+              renderizarCarrito()
+              const form = document.getElementById(`form${id}`)
+              form.reset()
+          }
+      }) 
+  })
+}
+
+const finalizarCompra = (event)=>{
+  // console.log(event)
+  // como conseguir todos los datos de un form
+  // conseguimos la data de la form
+  const data = new FormData(event.target)
+  // console.log(data)
+  // creamos un objeto que sea {nombreInput: valorInput,...}
+  const cliente = Object.fromEntries(data)
+  // console.log(cliente)
+  // Creamos un "ticket"
+  const ticket = {cliente: cliente, total:totalCarrito(),id:pedidos.length, productos:carrito} //idealmente le ponen id único mejor que este
+  pedidos.push(ticket)
+  // Guardamos el ticket en nuestra "base de datos"
+  localStorage.setItem("pedidos", JSON.stringify(pedidos))
+  // Borra el array y le da un mensaje al usuario
+  borrarCarrito()
+  let mensaje = document.getElementById("carritoTotal")
+  mensaje.innerHTML = "Muchas gracias por su compra, los esperamos pronto"
+
+}
+
+// DOM
+const compraFinal = document.getElementById("formCompraFinal")
+compraFinal.addEventListener("submit",(event)=>{
+  // evitamos el reset
+  event.preventDefault()
+  if(carrito.length>0){
+      finalizarCompra(event)
+  } else {
+      // console.warn("canasta vacia") // no para esta entrega, lo ahcemos a futuro con lirberias
   }
-// Función para mostrar el contenido del carrito
+})
+const selectorTipo = document.getElementById("tipoProducto")
+selectorTipo.onchange = (evt)=>{
+  const tipoSeleccionado =  evt.target.value
+  if(tipoSeleccionado === "0"){
+      renderizarProductos(productos)
+  } else {
+      renderizarProductos(productos.filter(prod=>prod.type === tipoSeleccionado))
+  }
+}
+
+
+// Testing
+const app = ()=>{
+  productosPreexistentes()
+  renderizarProductos(productos)
+  renderizarCarrito()
+  totalCarritoRender()
+}
+
+//ejecuto mi aplicacion
+app()
+
+
+/*
+// contenedor donde se muestran los productos
+const productosContainer = document.getElementById("productos-container");
+
+// contenedor donde se muestra el carrito y el total a pagar
+const carritoContainer = document.getElementById("carrito-container");
+const carrito = [];
+
+// Cargar los datos del archivo JSON y mostrar los productos en la página
+fetch("../productos.json")
+  .then((response) => response.json())
+  .then((data) => mostrarProductos(data));
+
+function mostrarProductos(productos) {
+  productos.forEach((producto) => {
+    const card = document.createElement("div");
+    card.className = "card";
+
+    const imagen = document.createElement("img");
+    imagen.src = producto.imagen;
+    imagen.alt = producto.nombre;
+
+    const titulo = document.createElement("h2");
+    titulo.textContent = producto.nombre + "  |  $" + producto.precio;
+
+    const descripcion = document.createElement("p");
+    descripcion.textContent = producto.descripcion;
+
+    const botonComprar = document.createElement("button");
+    botonComprar.textContent = "Comprar";
+    botonComprar.addEventListener("click", () => agregarAlCarrito(producto));
+
+    card.appendChild(imagen);
+    card.appendChild(titulo);
+    card.appendChild(descripcion);
+    card.appendChild(botonComprar);
+
+    productosContainer.appendChild(card);
+  });
+}
+
+function agregarAlCarrito(producto) {
+  carrito.push(producto);
+  mostrarCarrito();
+  calcularTotal();
+}
+
 function mostrarCarrito() {
-  let contenidoCarrito = "Contenido del carrito:\n";
-  contenidoCarrito += "Porciones de torta: " + carritoCantidadPorcionesTorta + "\r";
-  contenidoCarrito += "Alfajores: " + carritoCantidadAlfajores + "\r";
-  contenidoCarrito += "Macarrons: " + carritoCantidadMacarrons + "\r";
-  contenidoCarrito += "Cookies: " + carritoCantidadCookies + "\r";
-  contenidoCarrito += "Croissants: " + carritoCantidadCroissants + "\r";
-  
-  console.log(contenidoCarrito);
+  carritoContainer.innerHTML = "";
+  carrito.forEach((producto) => {
+    const item = document.createElement("div");
+    item.textContent = producto.nombre + "  |  $" + producto.precio;
+    carritoContainer.appendChild(item);
+  });
 }
-
-
-// Función para calcular el total a pagar
 function calcularTotal() {
-  let totalPorcionesTorta = carritoCantidadPorcionesTorta * precioPorcionT;
-  let totalAlfajores = carritoCantidadAlfajores * precioAlfajores;
-  let totalMacarrons = carritoCantidadMacarrons * precioMacarrons;
-  let totalCookies = carritoCantidadCookies * precioCookies;
-  let totalCroissants = carritoCantidadCroissants * precioCroissant;
-  let total = totalPorcionesTorta + totalAlfajores + totalMacarrons + totalCookies + totalCroissants ;
-  alert("Total a pagar: $" + total);
+  let total = 0;
+  carrito.forEach((producto) => {
+    total += producto.precio;
+  });
+  const totalElement = document.createElement("p");
+  totalElement.textContent = "Total a pagar: $" + total;
+  carritoContainer.appendChild(totalElement);
 }
-
-// Ciclo 
-let continuar = true;
-
-while (continuar) {
-  let opcion = parseInt(prompt("Selecciona una opción:\n1. Agregar porción de torta al carrito\n2. Agregar alfajores al carrito\n3. Agregar macarrons al carrito\n4. Agregar cookies al carrito\n5. Agregar croissants al carrito\n6. Mostrar carrito\n7. Calcular total\n8 . Salir"));
-
-  switch (opcion) {
-    case 1:
-      agregarPorcionTortaAlCarrito();
-      break;
-    case 2:
-      agregarAlfajorAlCarrito();
-      break;
-      case 3:
-      agregarMacarronsAlCarrito();
-      break;
-      case 4:
-      agregarCookiesAlCarrito();
-      break;
-      case 5:
-      agregarCroissantsAlCarrito();
-      break;
-      case 6:
-      mostrarCarrito();
-        break;
-    case 7:
-      calcularTotal();
-      break;
-    case 8:
-       continuar = false;
-      break;
-    default:
-      alert("Por favor, selecciona una opción válida.");
-      break;
-  }
-}
+*/

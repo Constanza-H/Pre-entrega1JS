@@ -1,0 +1,39 @@
+[
+    {
+      "nombre": "Porción de Torta Matilda",
+      "precio": 1200,
+      "descripcion": "Bizcochuelo húmedo de cacao amargo, relleno y cubierto de ganache de chocolate",
+      "imagen": "./assets/img/Torta de chocolate red.jpg"
+    },
+    {
+      "nombre": "Porción de Cheesecake",
+      "precio": 1000,
+      "descripcion": "Base de galletitas de vainilla, relleno cremoso y arriba un mix de frutos rojos",
+      "imagen": "./assets/img/Cheesecake red.jpg"
+    },
+    {
+      "nombre": "Macarons",
+      "precio": 700,
+      "descripcion": "Macarons rellenos de ganache de chocolate",
+      "imagen": "./assets/img/Macarons.jpg"
+    },
+    {
+        "nombre": "Cookies",
+        "precio": 500,
+        "descripcion": "Cookies de vainilla con chips de chocolate",
+        "imagen": "./assets/img/Macarons.jpg"
+      },
+      {
+        "nombre": "Croissants",
+        "precio": 900,
+        "descripcion": "Masa esponjosa rellena con crema de avellanas",
+        "imagen": "./assets/img/Macarons.jpg"
+      },
+      {
+        "nombre": "Cupcake Ferrero",
+        "precio": 700,
+        "descripcion": "Masa de chocolate esponjosa cubierto por una ganache de cholote y ferrero rocher",
+        "imagen": "./assets/img/Macarons.jpg"
+      }
+  ]
+  

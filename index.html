@@ -1,40 +1,279 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link rel="shortcut icon" href="">
+    <title> | Trata de que sean dos |</title>
+    <link rel="shortcut icon" href="./assets/img/logo pasteleria red.png">
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    <header>
-        <h1>Mi Pasteleria</h1>
-<div>
-    <img src="" alt="logo del local">
-</div>
-<div>
-    <a href=""><img src="" alt="logo de carrito"></a>
-</div>
-<div>
-    <li>
-        <a href="./pages/menu.html">Menu</a>
-    </li>
-    <li>
-        <a href="./pages/orden-online.html">Orden online</a>
-    </li>
-    <li>
-        <a href=".//pages/locales.html">Locales</a>
-    </li>
-</div>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">
+                 <img src="./assets/img/logo pasteleria red2.png" alt="logo del local">
+            </div>
+                    <div id="carrito-container">
+                    <a href="./pages/carrito.html"><img src="./assets/img/carrito-de-compras color ok.png" alt="logo de carrito"></a>
+                    </div>
+            <div class="menu">
+                <ul>
+                    <li>
+                    <a href="./pages/menu.html">Home</a>
+                    </li>
+                    <li>
+                    <a href="./pages/orden-online.html">Orden online</a>
+                    </li>
+                    <li>
+                    <a href=".//pages/sucursales.html">Sucursales</a>
+                    </li>
+                 </ul>
+            </div>
+        </nav>
+         <h1>| Trata de que sean dos| </h1>
     </header>
-    <main>
+    <main id="productos-container">
+        <form action="">
+            <select  class="form-select" id="tipoProducto">
+                <option selected value="0">Todo</option>
+                <option value="Bebidas">Bebidas</option>
+                <option value="Panaderia">Panaderia</option>
+                <option value="Desayunos y Meriendas">Desayunos y Meriendas</option>
+            </select>
+        </form>
+        <div class="cards-container">
+            <div class="card">
+                <img src="./assets/img/IMAGEN TORTA MATILDA.jpg" alt="torta de chocolate">
+                <h2> Porción de Torta Matilda  <br> $1200 </h2>
+                <p> Bizcochuelo húmedo de cacao amargo, relleno y cubierto de ganache de chocolate </p>
+                <span>Stock</span>
+                <span>$</span>
+                <form action="">
+                    <label for=""> Cantidad</label>
+                    <input type="number" placeholder="1" id="" >
+                    <button class="btn-primary" id=""> Agregar </button>
+                </form>
+               
+            </div>
+            <div class="card">
+                <img src="./assets/img/Cheesecake red.jpg" alt="Porción de Cheesecake">
+                <h2> Porción de Cheesecake <br> $1000 </h2>
+                <p> Base de galletitas de vainilla, relleno cremoso y arriba un mix de frutos rojos </p>
+                <span>Stock</span>
+                <span>$</span>
+                <form action="">
+                    <label for=""> Cantidad</label>
+                    <input type="number" placeholder="1" id="" >
+                    <button class="btn-primary" id=""> Agregar </button>
+                </form>
+                
+            </div>
+            <div class="card">
+                <img src="./assets/img/MACARONS (1).jpg" alt="Macarons">
+                <h2> Macarons <br> $700 </h2>
+                <p> Macarons rellenos de ganache de chocolate</p>
+                <span>Stock</span>
+                <span>$</span>
+                <form action="">
+                    <label for=""> Cantidad</label>
+                    <input type="number" placeholder="1" id="" >
+                    <button class="btn-primary" id=""> Agregar </button>
+                </form>
+            </div>
+            <div class="card">
+                <img src="./assets/img/COOKIES (2).jpg" alt="">
+                <h2> Cookies  <br> $500 </h2>
+                <p> Cookies con chips de chocolate</p>
+                <span>Stock</span>
+                <span>$</span>
+                <form action="">
+                    <label for=""> Cantidad</label>
+                    <input type="number" placeholder="1" id="" >
+                    <button class="btn-primary" id=""> Agregar </button>
+                </form>
+            </div>
+            <div class="card">
+                <img src="./assets/img/Croissants red.jpg" alt="">
+                <h2> Croissants <br> $900   </h2>
+                <p> Masa esponjosa rellena con crema de avellanas</p>
+                <span>Stock</span>
+                <span>$</span>
+                <form action="">
+                    <label for=""> Cantidad</label>
+                    <input type="number" placeholder="1" id="" >
+                    <button class="btn-primary" id=""> Agregar </button>
+                </form>
+            </div>
+            <div class="card">
+                <img src="./assets/img/FERRERO.jpg" alt="">
+                <h2> Cupcake Ferrero  <br> $700 </h2>
+                <p> Masa de chocolate esponjosa cubierto por una ganache de cholote y ferrero rocher</p>
+                <span>Stock</span>
+                <span>$</span>
+                <form action="">
+                    <label for=""> Cantidad</label>
+                    <input type="number" placeholder="1" id="" >
+                    <button class="btn-primary" id=""> Agregar </button>
+                </form>
+            </div>
+            <div class="card">
+                <img src="./assets/img/CAFE AMERICANO.jpg" alt="">
+                <h2> Café Americano <br> $450 </h2>
+                <p>Café que consiste en partes exactamente iguales de espresso y agua</p>
+                <span>Stock</span>
+                <span>$</span>
+                <form action="">
+                    <label for=""> Cantidad</label>
+                    <input type="number" placeholder="1" id="" >
+                    <button class="btn-primary" id=""> Agregar </button>
+                </form>
+            </div>
+            <div class="card">
+                <img src="./assets/img/CAPUCHINO.jpg" alt="">
+                <h2> Capuchino <br> $550 </h2>
+                <p>Bebida que combina café expreso, leche espumada y cacao amargo</p>
+                <span>Stock</span>
+                <span>$</span>
+                <form action="">
+                    <label for=""> Cantidad</label>
+                    <input type="number" placeholder="1" id="" >
+                    <button class="btn-primary" id=""> Agregar </button>
+                </form>
+            </div>
+            <div class="card">
+                <img src="./assets/img/LATTE DE VAINILLA.jpg" alt="">
+                <h2> Latte de Vainilla <br> $570 </h2>
+                <p>Café con leche a un nuevo nivel de delicia con un toque de vainilla.</p>
+                <span>Stock</span>
+                <span>$</span>
+                <form action="">
+                    <label for=""> Cantidad</label>
+                    <input type="number" placeholder="1" id="" >
+                    <button class="btn-primary" id=""> Agregar </button>
+                </form>
+            </div>
+            <div class="card">
+                <img src="./assets/img/LATTE MACHIATO.jpg" alt="">
+                <h2> Latte Macchiato<br> $570 </h2>
+                <p>Consiste en mucha leche al vapor, un tiro de espresso y leche espumosa encima</p>
+                <span>Stock</span>
+                <span>$</span>
+                <form action="">
+                    <label for=""> Cantidad</label>
+                    <input type="number" placeholder="1" id="" >
+                    <button class="btn-primary" id=""> Agregar </button>
+                </form>
+            </div>
+            <div class="card">
+                <img src="./assets/img/TE EN HEBRAS.jpg" alt="">
+                <h2> Té en Hebras <br> $500 </h2>
+                <p>Infusión de las hojas y brotes de la planta del té</p>
+                <span>Stock</span>
+                <span>$</span>
+                <form action="">
+                    <label for=""> Cantidad</label>
+                    <input type="number" placeholder="1" id="" >
+                    <button class="btn-primary" id=""> Agregar </button>
+                </form>
+            </div>
+            <div class="card">
+                <img src="./assets/img/VASO DE COCA.jpg" alt="">
+                <h2> Gaseosa <br> $550 </h2>
+                <p>Linea Coca Cola</p>
+                <span>Stock</span>
+                <span>$</span>
+                <form action="">
+                    <label for=""> Cantidad</label>
+                    <input type="number" placeholder="1" id="" >
+                    <button class="btn-primary" id=""> Agregar </button>
+                </form>
+            </div>
+            <div class="card">
+                <img src="./assets/img/AGUA SIN GAS.jpg" alt="">
+                <h2> Agua sin gas <br> 500 </h2>
+                <p>Linea Coca Cola</p>
+                <span>Stock</span>
+                <span>$</span>
+                <form action="">
+                    <label for=""> Cantidad</label>
+                    <input type="number" placeholder="1" id="" >
+                    <button class="btn-primary" id=""> Agregar </button>
+                </form>
+            </div>
+            <div class="card">
+                <img src="./assets/img/AGUA SIN GAS.jpg" alt="">
+                <h2> Agua con gas <br> 500 </h2>
+                <p>Linea Coca Cola</p>
+                <span>Stock</span>
+                <span>$</span>
+                <form action="">
+                    <label for=""> Cantidad</label>
+                    <input type="number" placeholder="1" id="" >
+                    <button class="btn-primary" id=""> Agregar </button>
+                </form>
+            </div>
+            <div class="card">
+                <img src="./assets/img/LIGHT.jpg" alt="">
+                <h2> Light <br> 1200 </h2>
+                <p>Infusión + tostadas de pan integral con queso y mermelada + jugo de naranja</p>
+                <span>Stock</span>
+                <span>$</span>
+                <form action="">
+                    <label for=""> Cantidad</label>
+                    <input type="number" placeholder="1" id="" >
+                    <button class="btn-primary" id=""> Agregar </button>
+                </form>
+            </div>
+            <div class="card">
+                <img src="./assets/img/DE CAMPO.jpg" alt="">
+                <h2> De Campo <br> 1450 </h2>
+                <p>Infusión + tostadas de pan de campo con manteca y DDL + jugo de naranja</p>
+                <span>Stock</span>
+                <span>$</span>
+                <form action="">
+                    <label for=""> Cantidad</label>
+                    <input type="number" placeholder="1" id="" >
+                    <button class="btn-primary" id=""> Agregar </button>
+                </form>
+            </div>
+            <div class="card">
+                <img src="./assets/img/AVOCADO.jpg" alt="">
+                <h2> Avocado <br> 1900 </h2>
+                <p>Infusión + tostadas de campo con huevos revueltos,queso finlandia y palta + jugo de naranja + yogurt con granola</p>
+                <span>Stock</span>
+                <span>$</span>
+                <form action="">
+                    <label for=""> Cantidad</label>
+                    <input type="number" placeholder="1" id="" >
+                    <button class="btn-primary" id=""> Agregar </button>
+                </form>
+            </div>
+            <div class="card">
+                <img src="./assets/img/FIT.jpg" alt="">
+                <h2> Fit <br> 1750 </h2>
+                <p>Infusión + pancakes de avena y coco con frutas de estación y miel + jugo de naranja + yogurt con granola</p>
+                <span>Stock</span>
+                <span>$</span>
+                <form action="">
+                    <label for=""> Cantidad</label>
+                    <input type="number" placeholder="1" id="" >
+                    <button class="btn-primary" id=""> Agregar </button>
+                </form>
+            </div>
+        </div>
     </main>
-    <footer>
-
-
+    <footer class="footer">
+        <div class="redes">
+            <a href="https://www.instagram.com/" target="_blank"> <img src="./assets/img/instagram.png" alt="icono de instagram"> </a >
+            <a href="https://www.youtube.com/" target="_blank"> <img src="./assets/img/youtube.png" alt="icono de yotube"> </a >
+            <a href="https://www.facebook.com/" target="_blank"> <img src="./assets/img/facebook.png" alt="icono de facebook"> </a >
+            <a href="https://twitter.com/" target="_blank"> <img src="./assets/img/twitter.png" alt="icono de twitter"> </a >
+        </div>
+        <div class="contacto">
+            <h3> Tucumán Argentina <br> +549381234567</h3>
+        </div>
     </footer>
-    <script src="./js/script.js"></script>
+    <script src="./js/script.js" defer></script>
 </body>
 </html>

@@ -1,3 +1,151 @@
-h1  {
-    background-color: papayawhip;
+*{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: 'Forum';
+}
+nav{
+    background-color: white;
+}
+.header .menu ul{
+text-decoration: none;
+}
+.header .menu ul{
+    display: flex;
+    list-style: none;
+    justify-content: space-between;
+    padding-left: 350px;
+    padding-right: 250px;
+    padding-bottom: 50px;
+    padding-top: 5px;
+}
+header .menu a{
+    text-decoration: none;
+    color: #DFA67B;
+    font-size:18px ;
+}
+#carrito-container{
+    display: flex;
+    justify-content: end;
+    padding-right: 100px;
+    padding-bottom: 120px;
+}
+.form-select{
+    display: flex;
+    padding-left: 5px;
+    
+}
+h1{
+    color: #DFA67B;
+    display: flex;
+    justify-content: center;
+    font-size: 40px;
+    padding-bottom: 30px;
+}
+main{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    justify-items: center;
+    padding: 20px;
+}
+main h2{
+color: #DFA67B;
+font-size:20px ;
+align-items: center;
+}
+#productos-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+    justify-content: center;
+  }
+  
+  .card {
+    max-width: 270px;
+    height: 550px;
+    margin: 3px;
+  }
+.card h2 {
+    margin: 10px 0;
+    text-align: center;
+  }
+  
+.card p {
+    color:#DFA67B;
+    justify-content: center;
+  }
+button {
+    background-color:#DFA67B ;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #9b7354;
+  }
+footer{
+    background-color:#DFA67B;
+    width: 100%;
+    height: 150px;
+}
+.redes{
+display: flex;
+justify-content: space-between;
+padding-left: 700px;
+padding-top: 15px;
+padding-right: 15px;
+}
+.contacto h3{
+    color: white;
+    font-size: 18px;
+    padding-left: 50px;
+    padding-top: 40px;
+}
+
+/* Sucursales  */
+.main3 h2{
+    display: flex;
+    justify-content: center;
+}
+.main3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding: 20px;
+  align-items: center;
+  align-items: center;
+}
+
+.sucursales ol {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+gap: 20px;
+}
+
+.sucursales li {
+  border: 1px solid #DFA67B;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 2px 5px #9b7354;
+}
+
+.sucursales a {
+  display: block;
+  margin-top: 10px;
+  background-color:#DFA67B ;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+}
+
+.sucursales a:hover {
+  background-color:#9b7354 ;
 }
