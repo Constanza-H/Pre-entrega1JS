@@ -1,39 +1,178 @@
 [
     {
-      "nombre": "Porción de Torta Matilda",
-      "precio": 1200,
-      "descripcion": "Bizcochuelo húmedo de cacao amargo, relleno y cubierto de ganache de chocolate",
-      "imagen": "./assets/img/Torta de chocolate red.jpg"
+      "name": "Porción de Torta Matilda",
+      "id":"001" ,
+      "price": 1200,
+      "description": "Bizcochuelo húmedo de cacao amargo, relleno y cubierto de ganache de chocolate",
+      "type" : "Pasteleria",
+      "image": "./assets/img/IMAGEN TORTA MATILDA.jpg",
+      "stock" : 25
+      
     },
     {
-      "nombre": "Porción de Cheesecake",
-      "precio": 1000,
-      "descripcion": "Base de galletitas de vainilla, relleno cremoso y arriba un mix de frutos rojos",
-      "imagen": "./assets/img/Cheesecake red.jpg"
+      "name": "Porción de Cheesecake",
+      "id" : "002",
+      "price": 1000,
+      "description": "Base de galletitas de vainilla, relleno cremoso y arriba un mix de frutos rojos",
+      "type" : "Pasteleria",
+      "image": "./assets/img/Cheesecake red.jpg" ,
+      "stock" : 20
     },
     {
-      "nombre": "Macarons",
-      "precio": 700,
-      "descripcion": "Macarons rellenos de ganache de chocolate",
-      "imagen": "./assets/img/Macarons.jpg"
+      "name": "Macarons",
+      "id" : "003" ,
+      "price": 700,
+      "description": "Macarons rellenos de ganache de chocolate",
+      "type" : "Pasteleria",
+      "image": "./assets/img/MACARONS (1).jpg" ,
+      "stock" : 50
     },
     {
-        "nombre": "Cookies",
-        "precio": 500,
-        "descripcion": "Cookies de vainilla con chips de chocolate",
-        "imagen": "./assets/img/Macarons.jpg"
+        "name": "Cookies",
+        "id" : "004" ,
+        "price": 500,
+        "description": "Cookies de vainilla con chips de chocolate",
+        "type" : "Pasteleria",
+        "image": "./assets/img/COOKIES (2).jpg",
+        "stock" : 30
       },
       {
-        "nombre": "Croissants",
-        "precio": 900,
-        "descripcion": "Masa esponjosa rellena con crema de avellanas",
-        "imagen": "./assets/img/Macarons.jpg"
+        "name": "Croissants",
+        "id" : "005" ,
+        "price": 1200,
+        "description": "Masa esponjosa rellena con crema de avellanas",
+        "type" : "Pasteleria",
+        "image": "./assets/img/CROISSANT.jpg" ,
+        "stock" : 35
       },
       {
-        "nombre": "Cupcake Ferrero",
-        "precio": 700,
-        "descripcion": "Masa de chocolate esponjosa cubierto por una ganache de cholote y ferrero rocher",
-        "imagen": "./assets/img/Macarons.jpg"
+        "name": "Cupcake Ferrero",
+        "id" : "006" ,
+        "price": 700,
+        "description": "Masa de chocolate esponjosa cubierto por una ganache de chocolate y ferrero rocher",
+        "type" :"Pasteleria",
+        "image": "./assets/img/FERRERO.jpg" ,
+        "stock" : 60
+      },
+      {
+        "name":"Café Americano", 
+        "id": "007",
+        "price" : 450 ,
+        "description" : "Café que consiste en partes exactamente iguales de espresso y agua",
+        "type": "Bebidas" , 
+        "image" : "./assets/img/CAFE AMERICANO.jpg" ,
+        "stock":100
+      },
+      {
+        "name":"Capuchino", 
+        "id":"008",
+        "price":400,
+        "description":"Bebida que combina café expreso, leche espumada y cacao amargo" ,
+        "type":"Bebidas", 
+        "image" : "./assets/img/CAPUCHINO.jpg" ,
+        "stock":100 
+        
+      },
+      {
+        "name":"Latte de Vainilla", 
+        "id":"009",
+        "price":450,
+        "description":"Café con leche a un nuevo nivel de delicia con un toque de vainilla." ,
+        "type":"Bebidas", 
+         "image" : "./assets/img/LATTE DE VAINILLA.jpg" ,
+        "stock" :100
+        
+      },
+      {
+        "name":"Latte Macchiato", 
+        "id":"010",
+        "price":470, 
+        "description":"Consiste en mucha leche al vapor, un tiro de espresso y leche espumosa encima" ,
+        "type":"Bebidas", 
+        "image" : "./assets/img/LATTE MACHIATO.jpg" ,
+        "stock":100
+        
+      },
+      {
+        "name":"Té en Hebras", 
+        "id":"011",
+        "price":420,
+        "description":"Infusión de las hojas y brotes de la planta del té" ,
+        "type":"Bebidas", 
+         "image" : "./assets/img/TE EN HEBRAS.jpg",
+        "stock":100
+       
+      },
+      {
+        "name":"Gaseosa", 
+        "id":"012",
+        "price":350, 
+        "description":"Linea Coca Cola" ,
+        "type":"Bebidas", 
+       "image" :"./assets/img/VASO DE COCA.jpg",
+        "stock":100
+        
+      },
+      {
+        "name":"Agua sin gas", 
+        "id":"013",
+        "price":300,
+        "description":"Linea kin -Coca Cola-" ,
+        "type":"Bebidas", 
+        "image" : "./assets/img/AGUA SIN GAS.jpg" ,
+        "stock":100 
+        
+      },
+      {
+        "name":"Agua con gas", 
+        "id":"014",
+        "price":300, 
+        "description":"Linea kin -Coca Cola-" ,
+        "type":"Bebidas", 
+        "image" : "./assets/img/SODA.jpg" ,
+        "stock":100
+        
+      },
+      {
+        "name":"Light", 
+       "id":"015",
+       "price":1500, 
+       "description":"Infusión + tostadas de pan integral con queso y mermelada + jugo de naranja " ,
+       "type":"Desayunos y Meriendas", 
+       "image" : "./assets/img/LIGHT.jpg",
+        "stock":100
+        
+      },
+      {
+        "name":"De Campo", 
+        "id":"016",
+        "price":1450, 
+        "description":"Infusión + tostadas de pan de campo con manteca y DDL + jugo de naranja " ,
+        "type":"Desayunos y Meriendas", 
+       "image" : "./assets/img/DE CAMPO.jpg" ,
+        "stock":100
+        
+      },
+      {
+        "name":"Avocado", 
+        "id":"017",
+        "price":1900,
+        "description":"Infusión + tostadas de campo con huevos revueltos,queso finlandia y palta + jugo de naranja + yogurt con granola " ,
+        "type":"Desayunos y Meriendas", 
+       "image" :"./assets/img/AVOCADO.jpg" ,
+        "stock":100
+        
+      },
+      {
+        "name":"Fit", 
+        "id":"018",
+        "price":1750,
+        "description":"Infusión + pancakes de avena y coco con frutas de estación y miel + jugo de naranja + yogurt con granola " ,
+        "type":"Desayunos y Meriendas", 
+        "image" :"./assets/img/FIT.jpg" ,
+        "stock":100
+        
       }
+
   ]
   

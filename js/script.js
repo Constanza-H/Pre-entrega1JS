@@ -1,391 +1,182 @@
-class Producto{
-  constructor(name, id, type , price, stock, description){
-      this.name = name;
-      this.id = id;
-      this.price = price;
-      this.stock = stock;
-      this.description = description;
-      this.type = type;
-  }
-}
-const productosBase = [
-  {
-      name:"Porción de torta Matilda", 
-      id:"001",
-      type:"Pasteleria", 
-      price:1200, 
-      stock:25, 
-      description:"Bizcochuelo húmedo de cacao amargo, relleno y cubierto de ganache de chocolate"
-  },
-  {
-    name:"Porción de cheesecake", 
-    id:"002",
-    type:"Pasteleria", 
-    price:1000, 
-    stock:20, 
-    description:"Base de galletitas de vainilla, relleno cremoso y arriba un mix de frutos rojos"
-},
-{
-  name:"Macarons", 
-  id:"003",
-  type:"Pasteleria", 
-  price:700, 
-  stock:50, 
-  description:"Macarons rellenos de ganache de chocolate"
-},
-{
-  name:"Cookies", 
-  id:"004",
-  type:"Pasteleria", 
-  price:1200, 
-  stock:25, 
-  description:"Cookies de vainilla con chips de chocolate"
-},
-{
-  name:"Croissants", 
-  id:"005",
-  type:"Pasteleria", 
-  price:1200, 
-  stock:35, 
-  description:"Masa esponjosa rellena con crema de avellanas"
-},
-{
-  name:"Cupacake Ferrero", 
-  id:"006",
-  type:"Pasteleria", 
-  price:700, 
-  stock:60, 
-  description:"Masa de chocolate esponjosa cubierto por una ganache de cholote y ferrero rocher"
-},
-{
-  name:"Café Americano", 
-  id:"007",
-  type:"Bebidas", 
-  price:400, 
-  stock:100, 
-  description:"Café que consiste en partes exactamente iguales de espresso y agua"
-},
-{
-  name:"Capuchino", 
-  id:"008",
-  type:"Bebidas", 
-  price:400, 
-  stock:100, 
-  description:"Bebida que combina café expreso, leche espumada y cacao amargo"
-},
-{
-  name:"Latte de Vainilla", 
-  id:"009",
-  type:"Bebidas", 
-  price:450, 
-  stock:100, 
-  description:"Café con leche a un nuevo nivel de delicia con un toque de vainilla."
-},
-{
-  name:"Latte Macchiato", 
-  id:"010",
-  type:"Bebidas", 
-  price:470, 
-  stock:100, 
-  description:"Consiste en mucha leche al vapor, un tiro de espresso y leche espumosa encima"
-},
-{
-  name:"Té en Hebras", 
-  id:"011",
-  type:"Bebidas", 
-  price:420, 
-  stock:100, 
-  description:"Infusión de las hojas y brotes de la planta del té"
-},
-{
-  name:"Gaseosa", 
-  id:"012",
-  type:"Bebidas", 
-  price:350, 
-  stock:100, 
-  description:"Linea Coca Cola"
-},
-{
-  name:"Agua sin gas", 
-  id:"013",
-  type:"Bebidas", 
-  price:300, 
-  stock:100, 
-  description:"Linea kin -Coca Cola-"
-},
-{
-  name:"Agua con gas", 
-  id:"014",
-  type:"Bebidas", 
-  price:300, 
-  stock:100, 
-  description:"Linea kin -Coca Cola-"
-},
-{
-  name:"Light", 
-  id:"015",
-  type:"Desayunos y Meriendas", 
-  price:1200, 
-  stock:100, 
-  description:"Infusión + tostadas de pan integral con queso y mermelada + jugo de naranja "
-},
-{
-  name:"De Campo", 
-  id:"016",
-  type:"Desayunos y Meriendas", 
-  price:1450, 
-  stock:100, 
-  description:"Infusión + tostadas de pan de campo con manteca y DDL + jugo de naranja "
-},
-{
-  name:"Avocado", 
-  id:"017",
-  type:"Desayunos y Meriendas", 
-  price:1900, 
-  stock:100, 
-  description:"Infusión + tostadas de campo con huevos revueltos,queso finlandia y palta + jugo de naranja + yogurt con granola "
-},
-{
-  name:"Fit", 
-  id:"018",
-  type:"Desayunos y Meriendas", 
-  price:1750, 
-  stock:100, 
-  description:"Infusión + pancakes de avena y coco con frutas de estación y miel + jugo de naranja + yogurt con granola "
-},
-]
-// OR lógico para cargar local storage
-const productos = JSON.parse(localStorage.getItem("productos")) || [] 
-let carrito = JSON.parse(localStorage.getItem("carrito")) || []
-const pedidos = JSON.parse(localStorage.getItem("pedidos")) || []
-
-const agregarProducto = ({name, id, type, price, stock, description})=>{
-    //Destuctura un objeto para recibir los datos
-    if(productos.some((prod)=>prod.id===id)){
-    } else {
-        const productoNuevo = new Producto(name, id, type, price, stock, description)
-        productos.push(productoNuevo)
-        //guarda el nuevo array de productos
-        localStorage.setItem("productos", JSON.stringify(productos))
-    }
-}
-
-const productosPreexistentes = ()=>{
-    // Si el array de productos esta vacio, utiliza el array de productos pre-existente
-    if (productos.length===0){
-        productosBase.forEach(prod=>{
-            let dato = JSON.parse(JSON.stringify(prod))
-            agregarProducto(dato)}
-            )
-    }
-}
-const totalCarrito = ()=>{
-    let total = carrito.reduce((acumulador, {price, quantity})=>{
-        return acumulador + (price*quantity)
-    }, 0)
-    return total
-}
-const totalCarritoRender = ()=>{
-    // se encarga de calcular el total del carrito
-    const carritoTotal = document.getElementById("carritoTotal")
-    carritoTotal.innerHTML=`Precio total: $ ${totalCarrito()}`
-}
-
-const agregarCarrito = (objetoCarrito)=>{
-    carrito.push(objetoCarrito)
-    totalCarritoRender()
-}
-const renderizarCarrito = ()=>{
-  const listaCarrito = document.getElementById("listaCarrito")
-  
-  listaCarrito.innerHTML=""
-  carrito.forEach(({name, price,id, quantity}) =>{
-      let elementoLista = document.createElement("li")
-      elementoLista.innerHTML=`Producto:${name} -- P/u: ${price} -- Cant.:${quantity} <button id="eliminarCarrito${id}">X</button>`
-      listaCarrito.appendChild(elementoLista);
-      const botonBorrar = document.getElementById(`eliminarCarrito${id}`)
-      botonBorrar.addEventListener("click",()=>{
-          // creo un array sin el elemento a borrar y lo igualo a carrito
-          carrito = carrito.filter((elemento)=>{
-              if(elemento.id !== id){
-                  return elemento
-              }
-          })
-          let carritoString = JSON.stringify(carrito)
-          localStorage.setItem("carrito", carritoString)
-          renderizarCarrito()
-      })
-      let carritoString = JSON.stringify(carrito)
-      localStorage.setItem("carrito", carritoString)
-  })
-}
-
-const borrarCarrito = ()=>{
-  carrito.length = 0  //es una manera de borrar el contenido de un array constante
-  let carritoString = JSON.stringify(carrito)
-  localStorage.setItem("carrito", carritoString)
-  renderizarCarrito()
-}
-
-const renderizarProductos = (arrayUtilizado)=>{
-  // renderiza productos en el DOM
-  const contenedorProductos = document.getElementById("contenedorProductos")
-  // borramos para no duplicar
-  contenedorProductos.innerHTML = ""
-  
-  arrayUtilizado.forEach(({name, id, type, price, stock, description})=>{
-      const prodCard = document.createElement("div")
-      prodCard.classList.add("col")
-      prodCard.classList.add("card")
-      prodCard.style = "width: 270px;height: 550px; margin:3px"
-      prodCard.id = id
-      prodCard.innerHTML = `
-              <img src="./assets/${name+id}.png" class="card-img-top" alt="${name}">
-              <div class="card-body">
-                  <h5 class="card-title">${name}</h5>
-                  <h6>${type}</h6>
-                  <p class="card-text">${description}</p>
-                  <span>Stock: ${stock}</span>
-                  <span>$ ${price}</span>
-                  <form id="form${id}">
-                      <label for="contador${id}">Cantidad</label>
-                      <input type="number" placeholder="0" id="contador${id}">
-                      <button class="btn btn-primary" id="botonProd${id}">Agregar</button>
-                  </form>
-              </div>`
-      contenedorProductos.appendChild(prodCard)
-      const btn = document.getElementById(`botonProd${id}`)
-      // Funcionalidad al boton de agregar para agregar prods al carrito
-      btn.addEventListener("click",(evento)=>{
-          evento.preventDefault()
-          const contadorQuantity = Number(document.getElementById(`contador${id}`).value)
-          if(contadorQuantity>0){
-              agregarCarrito({name, id, type, price, stock, description, quantity:contadorQuantity})
-              renderizarCarrito()
-              const form = document.getElementById(`form${id}`)
-              form.reset()
-          }
-      }) 
-  })
-}
-
-const finalizarCompra = (event)=>{
-  // console.log(event)
-  // como conseguir todos los datos de un form
-  // conseguimos la data de la form
-  const data = new FormData(event.target)
-  // console.log(data)
-  // creamos un objeto que sea {nombreInput: valorInput,...}
-  const cliente = Object.fromEntries(data)
-  // console.log(cliente)
-  // Creamos un "ticket"
-  const ticket = {cliente: cliente, total:totalCarrito(),id:pedidos.length, productos:carrito} //idealmente le ponen id único mejor que este
-  pedidos.push(ticket)
-  // Guardamos el ticket en nuestra "base de datos"
-  localStorage.setItem("pedidos", JSON.stringify(pedidos))
-  // Borra el array y le da un mensaje al usuario
-  borrarCarrito()
-  let mensaje = document.getElementById("carritoTotal")
-  mensaje.innerHTML = "Muchas gracias por su compra, los esperamos pronto"
-
-}
-
-// DOM
-const compraFinal = document.getElementById("formCompraFinal")
-compraFinal.addEventListener("submit",(event)=>{
-  // evitamos el reset
-  event.preventDefault()
-  if(carrito.length>0){
-      finalizarCompra(event)
-  } else {
-      // console.warn("canasta vacia") // no para esta entrega, lo ahcemos a futuro con lirberias
-  }
-})
-const selectorTipo = document.getElementById("tipoProducto")
-selectorTipo.onchange = (evt)=>{
-  const tipoSeleccionado =  evt.target.value
-  if(tipoSeleccionado === "0"){
-      renderizarProductos(productos)
-  } else {
-      renderizarProductos(productos.filter(prod=>prod.type === tipoSeleccionado))
+class Producto {
+  constructor(name, id, type, price, stock, description, image) {
+    this.name = name;
+    this.id = id;
+    this.price = price;
+    this.stock = stock;
+    this.description = description;
+    this.type = type;
+    this.image = image;
   }
 }
 
-
-// Testing
-const app = ()=>{
-  productosPreexistentes()
-  renderizarProductos(productos)
-  renderizarCarrito()
-  totalCarritoRender()
-}
-
-//ejecuto mi aplicacion
-app()
-
-
-/*
-// contenedor donde se muestran los productos
-const productosContainer = document.getElementById("productos-container");
-
-// contenedor donde se muestra el carrito y el total a pagar
-const carritoContainer = document.getElementById("carrito-container");
 const carrito = [];
 
-// Cargar los datos del archivo JSON y mostrar los productos en la página
-fetch("../productos.json")
-  .then((response) => response.json())
-  .then((data) => mostrarProductos(data));
+document.addEventListener('DOMContentLoaded', () => {
+  cargarProductos()
+    .then(productos => {
+      renderizarProductos(productos);
+      agregarEventListeners(productos);
+    })
+    .catch(error => {
+      console.error('Error al cargar los productos:', error);
+    });
+});
 
-function mostrarProductos(productos) {
-  productos.forEach((producto) => {
-    const card = document.createElement("div");
-    card.className = "card";
+function cargarProductos() {
+  return fetch('../productos.json')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`Error al cargar los datos: ${response.status}`);
+      }
+      return response.json();
+    });
+}
 
-    const imagen = document.createElement("img");
-    imagen.src = producto.imagen;
-    imagen.alt = producto.nombre;
+function crearCard(producto) {
+  const card = document.createElement('div');
+  card.classList.add('card');
 
-    const titulo = document.createElement("h2");
-    titulo.textContent = producto.nombre + "  |  $" + producto.precio;
+  const img = document.createElement('img');
+  img.src = producto.image;
+  img.alt = producto.name;
 
-    const descripcion = document.createElement("p");
-    descripcion.textContent = producto.descripcion;
+  const h2 = document.createElement('h2');
+  h2.textContent = producto.name;
 
-    const botonComprar = document.createElement("button");
-    botonComprar.textContent = "Comprar";
-    botonComprar.addEventListener("click", () => agregarAlCarrito(producto));
+  const p = document.createElement('p');
+  p.textContent = producto.description;
 
-    card.appendChild(imagen);
-    card.appendChild(titulo);
-    card.appendChild(descripcion);
-    card.appendChild(botonComprar);
+  const span = document.createElement('span');
+  span.textContent = `Precio: $${producto.price}`;
 
-    productosContainer.appendChild(card);
+  const form = document.createElement('form');
+  form.id = `form-${producto.id}`;
+
+  const labelCantidad = document.createElement('label');
+  labelCantidad.textContent = 'Cantidad';
+
+  const inputCantidad = document.createElement('input');
+  inputCantidad.type = 'number';
+  inputCantidad.placeholder = '1';
+  inputCantidad.id = `cantidad-${producto.id}`;
+
+  const buttonAgregar = document.createElement('button');
+  buttonAgregar.textContent = 'Agregar';
+  buttonAgregar.classList.add('btn-primary');
+  buttonAgregar.id = `agregar-${producto.id}`;
+
+  form.appendChild(labelCantidad);
+  form.appendChild(inputCantidad);
+  form.appendChild(buttonAgregar);
+
+  card.appendChild(img);
+  card.appendChild(h2);
+  card.appendChild(p);
+  card.appendChild(span);
+  card.appendChild(form);
+
+  return card;
+}
+
+function agregarEventListeners(productos) {
+  productos.forEach(producto => {
+    const form = document.getElementById(`form-${producto.id}`);
+    const botonAgregar = document.getElementById(`agregar-${producto.id}`);
+
+    botonAgregar.addEventListener('click', event => {
+      event.preventDefault();
+      const cantidad = Number(document.getElementById(`cantidad-${producto.id}`).value);
+      if (cantidad > 0) {
+        agregarAlCarrito(producto, cantidad);
+      }
+    });
   });
 }
 
-function agregarAlCarrito(producto) {
-  carrito.push(producto);
-  mostrarCarrito();
-  calcularTotal();
+function agregarAlCarrito(producto, cantidad) {
+  const carritoItem = {
+    producto: producto,
+    cantidad: cantidad
+  };
+  carrito.push(carritoItem);
+  Swal.fire({
+    position: 'top-end',
+    icon: 'success',
+    title: 'Tu producto se agrego con éxito al carrito de compras',
+    showConfirmButton: false,
+    timer: 1500
+  })
 }
 
-function mostrarCarrito() {
-  carritoContainer.innerHTML = "";
-  carrito.forEach((producto) => {
-    const item = document.createElement("div");
-    item.textContent = producto.nombre + "  |  $" + producto.precio;
-    carritoContainer.appendChild(item);
+function renderizarProductos(productos) {
+  const contenedorProductos = document.getElementById('productos-container');
+  contenedorProductos.innerHTML = '';
+
+  productos.forEach(producto => {
+    const card = crearCard(producto);
+    contenedorProductos.appendChild(card);
   });
 }
-function calcularTotal() {
-  let total = 0;
-  carrito.forEach((producto) => {
-    total += producto.precio;
+
+
+// Finalizar la compra
+function finalizarCompra(event) {
+  event.preventDefault();
+
+  if (carrito.length === 0) {
+    Swal.fire('Carrito Vacío', 'No hay productos en el carrito.', 'error');
+    return;
+  }
+
+  // Datos del formulario
+  const nombre = document.getElementById('nombre').value;
+  const email = document.getElementById('email').value;
+  const telefono = document.getElementById('telefono').value;
+
+  // Datos del cliente
+  const cliente = {
+    nombre: nombre,
+    email: email,
+    telefono: telefono,
+  };
+
+  // Guardar pedido en el local storage
+  const pedido = {
+    cliente: cliente,
+    carrito: carrito,
+  };
+
+  // resumen de la compra
+  const resumen = `
+    Resumen de la Compra:
+    ---------------------
+    Productos: ${carrito
+      .map(item => `${item.producto.name} x${item.cantidad}`)
+      .join('\n')}
+    Total: $${totalCarrito()}
+  `;
+
+  Swal.fire({
+    title: 'Confirmar Compra',
+    text: resumen,
+    icon: 'info',
+    showCancelButton: true,
+    confirmButtonText: 'Finalizar Compra',
+    cancelButtonText: 'Cancelar',
+  }).then(result => {
+    if (result.isConfirmed) {
+      Swal.fire('¡Compra Finalizada!', '¡Gracias por tu compra!', 'success');
+      carrito.length = 0;
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+      localStorage.setItem('pedido', JSON.stringify(pedido));
+      renderizarCarrito();
+      totalCarritoRender();
+    }
   });
-  const totalElement = document.createElement("p");
-  totalElement.textContent = "Total a pagar: $" + total;
-  carritoContainer.appendChild(totalElement);
 }
-*/
+
+document.addEventListener('DOMContentLoaded', () => {
+  const formularioCompra = document.getElementById('formCompraFinal');
+  formularioCompra.addEventListener('submit', finalizarCompra);
+});

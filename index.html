@@ -14,13 +14,13 @@
             <div class="logo">
                  <img src="./assets/img/logo pasteleria red2.png" alt="logo del local">
             </div>
-                    <div id="carrito-container">
+                    <div id="carrito-container" >
                     <a href="./pages/carrito.html"><img src="./assets/img/carrito-de-compras color ok.png" alt="logo de carrito"></a>
                     </div>
             <div class="menu">
                 <ul>
                     <li>
-                    <a href="./pages/menu.html">Home</a>
+                    <a href="./index.html">Home</a>
                     </li>
                     <li>
                     <a href="./pages/orden-online.html">Orden online</a>
@@ -30,18 +30,20 @@
                     </li>
                  </ul>
             </div>
+            <div>
+                <form action="" class="form-select" aria-label="Default select example" id="tipoProducto" >
+                    <select  id="type">
+                        <option selected value="0">Todo</option>
+                        <option value="Bebidas">Bebidas</option>
+                        <option value="Pasteleria">Pasteleria</option>
+                        <option value="Desayunos y Meriendas">Desayunos y Meriendas</option>
+                    </select>
+                </form>
+            </div>
         </nav>
          <h1>| Trata de que sean dos| </h1>
     </header>
     <main id="productos-container">
-        <form action="">
-            <select  class="form-select" id="tipoProducto">
-                <option selected value="0">Todo</option>
-                <option value="Bebidas">Bebidas</option>
-                <option value="Panaderia">Panaderia</option>
-                <option value="Desayunos y Meriendas">Desayunos y Meriendas</option>
-            </select>
-        </form>
         <div class="cards-container">
             <div class="card">
                 <img src="./assets/img/IMAGEN TORTA MATILDA.jpg" alt="torta de chocolate">
@@ -94,7 +96,7 @@
                 </form>
             </div>
             <div class="card">
-                <img src="./assets/img/Croissants red.jpg" alt="">
+                <img src="./assets/img/CROISSANT.jpg" alt="">
                 <h2> Croissants <br> $900   </h2>
                 <p> Masa esponjosa rellena con crema de avellanas</p>
                 <span>Stock</span>
@@ -274,6 +276,7 @@
             <h3> Tucumán Argentina <br> +549381234567</h3>
         </div>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./js/script.js" defer></script>
 </body>
 </html>
